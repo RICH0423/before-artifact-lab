@@ -15,10 +15,7 @@
 # Start by building the application.
 FROM golang:1.15-buster as build
 
-## STEP 1 - Remove line below
-WORKDIR src/
-## STEP 1 - Uncomment line below
-# WORKDIR /src/
+WORKDIR /src/
 COPY src/ /src
 
 RUN go get -d -v ./...

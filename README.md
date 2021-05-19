@@ -4,7 +4,7 @@ In this lab you will focus on the binaries and supporting systems that produce a
 
 ## Steps
 
-### Hadolint (Dockerfile Lint)
+### Step 1 - Hadolint (Dockerfile Lint)
 
 1. Hadolint - Provides static analysis on Dockerfiles to ensure best practices are used from the Docker community
 
@@ -20,9 +20,15 @@ In this lab you will focus on the binaries and supporting systems that produce a
 
 1. Run `hadolint` against the Dockerfile
 
-### Container Structure Tests
+    ```bash
+    hadolint --config policies/hadolint.yaml Dockerfile
+    ```
 
-1. Container structure tests - Uses static code analysis to determine if the constructed docker image is designed to the required specification
+### Step 2 - Container Structure Tests
+
+In this section of the lab, we will build two docker images, one that uses Ubuntu as the final artifact, and one that uses a Distroless base image. The resulting Docker image in the Distroless will not have SSH, no extranious binaries/libraries and will not contain Sources/Update capabilities thus resulting in a smaller surface attack vector. This section will show how Container Structure Tests can prove prove that a final artifact does not have these types surface attack vectors.
+
+1. Container structure tests - Uses static code analysis to determine if the constructed docker image is designed to the required specification.
 
 1. Install `container-structure-test` project
 
@@ -30,13 +36,13 @@ In this lab you will focus on the binaries and supporting systems that produce a
     mkdir -p /tmp/container-structure-test
     wget -O /tmp/container-structure-test/container-structure-test-linux-amd64 https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64
     chmod +x /tmp/container-structure-test/container-structure-test-linux-amd64
-    mv /tmp/container-structure-test/container-structure-test $(go env GOPATH)/bin/container-structure-test
+    mv /tmp/container-structure-test/container-structure-test-linux-amd64 $(go env GOPATH)/bin/container-structure-test
     ```
 
-1. Run `hadolint` against the Dockerfile
+1. Run `container-structure-test` against the `Dockerfile-ubuntu`
 
     ```bash
-    hadolint --config security/hadolint.yaml Dockerfile
+    hadolint --config policies/hadolint.yaml Dockerfile
     ```
 
 1. Build the image and push to the local Container Repository (GCR)

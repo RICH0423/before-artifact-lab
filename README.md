@@ -13,9 +13,9 @@ In this lab you will focus on the binaries and supporting systems that produce a
     ```bash
     export HADOLINT_VERSION="2.4.1"
     mkdir -p /tmp/hadolint
-    wget -O /tmp/hadolint/hadolint https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64
+    wget -O /tmp/hadolint/hadolint https://github.com/hadolint/hadolint/releases/download/v2.4.1/hadolint-Linux-x86_64
     chmod +x /tmp/hadolint/hadolint
-    mv /tmp/hadolint/hadolint $(go env GOPATH)/bin/hadolint
+    mv /tmp/hadolint/hadolint $HOME/gopath/bin/hadolint
     ```
 
 1. Run `hadolint` against the Dockerfile with the provided policy file
@@ -52,7 +52,7 @@ In this section of the lab, we will build two docker images, one that uses Ubunt
     mkdir -p /tmp/container-structure-test
     wget -O /tmp/container-structure-test/container-structure-test-linux-amd64 https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64
     chmod +x /tmp/container-structure-test/container-structure-test-linux-amd64
-    mv /tmp/container-structure-test/container-structure-test-linux-amd64 $(go env GOPATH)/bin/container-structure-test
+    mv /tmp/container-structure-test/container-structure-test-linux-amd64 $HOME/gopath/bin/container-structure-test
     ```
 
 1. Build two docker containers locally
